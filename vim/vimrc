@@ -1,0 +1,10 @@
+colorscheme smyck
+syntax enable
+filetype plugin indent on
+"set background=dark
+set number
+set ruler
+set backspace=indent,eol,start " backspace over everything in insert mode
+set tabstop=4
+set shiftwidth=4
+set expandtab
