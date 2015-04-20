@@ -18,8 +18,6 @@
 	     '("org" . "http://orgmode.org/elpa") t) ; Org-mode's repository
 (package-initialize)
 
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-
 (setq backup-by-copying t    ; Don't clobber symlinks
       backup-directory-alist
       '(("." . "~/.saves"))  ; Don't litter my fs tree
@@ -34,6 +32,26 @@
 (setq tab-width 4
       indent-tabs-mode nil)
 
+(tool-bar-mode -1)
+
 ;; Always highlight parentheses
 (show-paren-mode t)
+
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+
+;; Add python-mode
+(add-to-list 'load-path "~/.emacs.d/plugins/python-mode.el-6.2.0")
+;;(setq py-install-directory "~/.emacs.d/plugins/python-mode.el-6.2.0")
+(autoload 'python-mode "python-mode" "Python Mode." t)
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+(add-to-list 'interpreter-mode-alist '("python" . python-mode))
+(require 'python-mode)
+
+
+
+
+
+
 
