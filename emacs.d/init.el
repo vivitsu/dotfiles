@@ -27,12 +27,22 @@
       version-control t)     ; Use versioned backups
 
 (setq inhibit-splash-screen t
+      inhibit-startup-scho-area-message t
       initial-scratch-message nil)
 
 (setq tab-width 4
-      indent-tabs-mode nil)
+      indent-tabs-mode nil
+      column-number-mode t)
 
 (tool-bar-mode -1)
+
+;; Swap option and command keys on Mac OS X
+(cond
+ ((string-equal system-type "darwin")    ; Mac OS X
+  (setq mac-option-buffer 'super)
+  (setq mac-command-modifier 'meta)
+  )
+ )
 
 ;; Always highlight parentheses
 (show-paren-mode t)

@@ -55,8 +55,22 @@ alias grep='grep --color=auto'
 # Use homebrewed version of gcc
 alias hgcc='gcc-4.9'
 
-# Set command prompt
+# setup git-completion
+if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+    source /usr/local/etc/bash_completion.d/git-completion.bash
+fi
+
+if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
+    source /usr/local/etc/bash_completion.d/git-prompt.sh
+    GIT_PS1_SHOWDIRTYSTATE=true
+fi
+
+# Set command prompt to λ if the terminal character encoding is UTF-8, regular otherwise
 # \u - username
 # \h - hostname
 # \w - current working direcory
-PS1="[$FGGN\u$RESET:$FGGR\w$RESET] \$ "
+if [ "$LANG" == "en_US.UTF-8" ]; then
+    PS1="[${FGGN}\u${RESET}:${FGGR}\w${RESET}\$(__git_ps1 ':%s')] λ "
+else
+    PS1="[${FGGN}\u${RESET}:${FGGR}\w${RESET}\$(__git_ps1 ':%s')] \$ "
+fi
