@@ -13,26 +13,36 @@
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives
-	     '("marmalade" . "https://marmalade-repo.org/packages/") t)
+	     '("marmalade" . "https://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
-	     '("org" . "http://orgmode.org/elpa") t) ; Org-mode's repository
+	     '("org" . "http://orgmode.org/elpa/") t) ; Org-mode's repository
 (package-initialize)
 
-(setq backup-by-copying t    ; Don't clobber symlinks
+(setq backup-by-copying t   ; Dont't clobber symlinks
       backup-directory-alist
-      '(("." . "~/.saves"))  ; Don't litter my fs tree
+      '(("." . "~/.saves")) ; Don't litter my fs tree
       delete-old-versions t
       kept-new-versions 6
       kept-old-versions 2
-      version-control t)     ; Use versioned backups
+      version-control t)    ; Use versioned backups
 
 (setq inhibit-splash-screen t
+      inhibit-startup-echo-area-message t
       initial-scratch-message nil)
 
 (setq tab-width 4
-      indent-tabs-mode nil)
+      indent-tabs-mode nil
+      column-number-mode t)
 
 (tool-bar-mode -1)
+
+;; Swap option and command keys on Mac OS X
+(cond
+ ((string-equal system-type "darwin")    ; Mac OS X
+  (setq mac-option-modifier 'super)
+  (setq mac-command-modifier 'meta)
+ )
+)
 
 ;; Always highlight parentheses
 (show-paren-mode t)
@@ -41,17 +51,10 @@
 
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
-;; Add python-mode
-(add-to-list 'load-path "~/.emacs.d/plugins/python-mode.el-6.2.0")
-;;(setq py-install-directory "~/.emacs.d/plugins/python-mode.el-6.2.0")
+; Add python-mode
+(add-to-list 'load-path "~/.emacs.d/plugins/python-mode.el-6.2.0") 
+;(setq py-install-directory "~/.emacs.d/plugins/python-mode.el-6.2.0")
 (autoload 'python-mode "python-mode" "Python Mode." t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 (require 'python-mode)
-
-
-
-
-
-
-
