@@ -33,7 +33,7 @@ GNU_SED_MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman"
 GNU_TAR_PATH="/usr/local/opt/gnu-tar/libexec/gnubin"
 
 # java
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home"
 
 export PATH="$GNU_COREUTILS_PATH:$GNU_SED_PATH:$GNU_TAR_PATH:/usr/local/sbin:$JAVA_HOME:$PATH"
 export MANPATH="$GNU_COREUTILS_MANPATH:$GNU_SED_MANPATH:$MANPATH"
@@ -50,23 +50,11 @@ fi
 # aliases
 alias e='emacs -nw'
 alias ls='ls $LS_OPTIONS -hF'
-alias ll='ls $LS_OPTIONS -ahlLF'
+alias ll='ls $LS_OPTIONS -ahLlF'
 alias grep='grep --color=auto'
 # Use homebrewed version of gcc
 alias hgcc='gcc-4.9'
-# redis
-alias redis-start='sudo launchctl start io.redis.redis-server'
-alias redis-stop='sudo launchctl stop io.redis.redis-server'
-# Homebrew unzip
-alias unzip6='/usr/local/Cellar/unzip/6.0/bin/unzip'
 
-<<<<<<< HEAD
-if [ -f ~/.lh_bash_aliases ]; then
-    . ~/.lh_bash_aliases
-fi
-
-=======
->>>>>>> 29d10792403184f4d0c4ef9e35f053487a1e11f4
 # setup git-completion
 if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
     source /usr/local/etc/bash_completion.d/git-completion.bash
@@ -82,11 +70,7 @@ fi
 # \h - hostname
 # \w - current working direcory
 if [ "$LANG" == "en_US.UTF-8" ]; then
-<<<<<<< HEAD
     PS1="[${FGGN}\u${RESET}:${FGGR}\w${RESET}]\$(__git_ps1) λ "
-=======
-    PS1="[${FGGN}\u${RESET}:${FGGR}\w${RESET}\$(__git_ps1 ':%s')] λ "
->>>>>>> 29d10792403184f4d0c4ef9e35f053487a1e11f4
 else
-    PS1="[${FGGN}\u${RESET}:${FGGR}\w${RESET}\$(__git_ps1 ':%s')] \$ "
+    PS1="[${FGGN}\u${RESET}:${FGGR}\w${RESET}]\$(__git_ps1 ':%s') \$ "
 fi
