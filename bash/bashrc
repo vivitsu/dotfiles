@@ -32,10 +32,12 @@ GNU_SED_PATH="/usr/local/opt/gnu-sed/libexec/gnubin"
 GNU_SED_MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman"
 GNU_TAR_PATH="/usr/local/opt/gnu-tar/libexec/gnubin"
 
+# Add cabal bin to PATH
+CABAL_BIN_PATH="/Users/$USER/.cabal/bin"
 # java
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home"
 
-export PATH="$GNU_COREUTILS_PATH:$GNU_SED_PATH:$GNU_TAR_PATH:/usr/local/sbin:$JAVA_HOME:$PATH"
+export PATH="$CABAL_BIN_PATH:$GNU_COREUTILS_PATH:$GNU_SED_PATH:$GNU_TAR_PATH:/usr/local/sbin:$JAVA_HOME:$PATH"
 export MANPATH="$GNU_COREUTILS_MANPATH:$GNU_SED_MANPATH:$MANPATH"
 
 export VISUAL=/usr/local/bin/emacs
@@ -50,10 +52,19 @@ fi
 # aliases
 alias e='emacs -nw'
 alias ls='ls $LS_OPTIONS -hF'
-alias ll='ls $LS_OPTIONS -ahLlF'
+alias ll='ls $LS_OPTIONS -ahlLF'
 alias grep='grep --color=auto'
 # Use homebrewed version of gcc
 alias hgcc='gcc-4.9'
+# redis
+alias redis-start='sudo launchctl start io.redis.redis-server'
+alias redis-stop='sudo launchctl stop io.redis.redis-server'
+# Homebrew unzip
+alias unzip6='/usr/local/Cellar/unzip/6.0/bin/unzip'
+
+if [ -f ~/.lh_bash_aliases ]; then
+    . ~/.lh_bash_aliases
+fi
 
 # setup git-completion
 if [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
@@ -72,5 +83,5 @@ fi
 if [ "$LANG" == "en_US.UTF-8" ]; then
     PS1="[${FGGN}\u${RESET}:${FGGR}\w${RESET}]\$(__git_ps1) λ "
 else
-    PS1="[${FGGN}\u${RESET}:${FGGR}\w${RESET}]\$(__git_ps1 ':%s') \$ "
+    PS1="[${FGGN}\u${RESET}:${FGGR}\w${RESET}\$(__git_ps1 ':%s')] \$ "
 fi
