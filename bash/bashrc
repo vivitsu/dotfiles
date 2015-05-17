@@ -32,10 +32,13 @@ GNU_SED_PATH="/usr/local/opt/gnu-sed/libexec/gnubin"
 GNU_SED_MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman"
 GNU_TAR_PATH="/usr/local/opt/gnu-tar/libexec/gnubin"
 
+# Add cabal bin to path
+CABAL_BIN_PATH="/Users/vivitsu/.cabal/bin"
+
 # java
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home"
 
-export PATH="$GNU_COREUTILS_PATH:$GNU_SED_PATH:$GNU_TAR_PATH:/usr/local/sbin:$JAVA_HOME:$PATH"
+export PATH="$GNU_COREUTILS_PATH:$GNU_SED_PATH:$GNU_TAR_PATH:/usr/local/sbin:$CABAL_BIN_PATH:$JAVA_HOME:$PATH"
 export MANPATH="$GNU_COREUTILS_MANPATH:$GNU_SED_MANPATH:$MANPATH"
 
 export VISUAL=/usr/local/bin/emacs
