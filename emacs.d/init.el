@@ -1,6 +1,8 @@
 (setq user-full-name "Vivitsu Maharaja")
 (setq user-mail-address "vivitsu.maharaja@gmail.com")
 
+(server-start)
+
 ;; set a default font
 (when (member "Monaco" (font-family-list))
   (set-face-attribute 'default nil :font "Monaco"))

@@ -40,7 +40,7 @@ export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Hom
 export PATH="$CABAL_BIN_PATH:$GNU_COREUTILS_PATH:$GNU_SED_PATH:$GNU_TAR_PATH:/usr/local/sbin:$JAVA_HOME:$PATH"
 export MANPATH="$GNU_COREUTILS_MANPATH:$GNU_SED_MANPATH:$MANPATH"
 
-export VISUAL=/usr/local/bin/emacs
+export VISUAL="emacsclient --alternate-editor=emacs"
 export EDITOR="$VISUAL"
 
 # Setup dircolors to colorize 'ls' output
@@ -81,7 +81,8 @@ fi
 # \h - hostname
 # \w - current working direcory
 if [ "$LANG" == "en_US.UTF-8" ]; then
-    PS1="[${FGGN}\u${RESET}:${FGGR}\w${RESET}]\$(__git_ps1) λ "
+    PS1="${FGGR}\w${RESET}\$(__git_ps1) ${FGRD}λ${RESET} "
+    #PS1="[${FGGN}\u${RESET}:${FGGR}\w${RESET}]\$(__git_ps1) λ "
 else
     PS1="[${FGGN}\u${RESET}:${FGGR}\w${RESET}\$(__git_ps1 ':%s')] \$ "
 fi
