@@ -1,0 +1,13 @@
+# This is Git's per-user configuration file.
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+[user]
+	name = Vivitsu Maharaja
+	email = vivitsu@lendinghome.com
+[core]
+	editor = emacsclient --alternate-editor=emacs
+	excludesfile = ~/.gitexcludes
+[push]
+	default = simple
