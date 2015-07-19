@@ -7,7 +7,7 @@
 	name = Vivitsu Maharaja
 	email = vivitsu@lendinghome.com
 [core]
-	editor = emacsclient --alternate-editor=emacs
+	editor = emacsclient -c -a emacs
 	excludesfile = ~/.gitexcludes
 [push]
 	default = simple

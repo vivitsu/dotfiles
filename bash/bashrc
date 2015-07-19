@@ -33,14 +33,19 @@ GNU_SED_MANPATH="/usr/local/opt/gnu-sed/libexec/gnuman"
 GNU_TAR_PATH="/usr/local/opt/gnu-tar/libexec/gnubin"
 
 # Add cabal bin to PATH
-CABAL_BIN_PATH="/Users/$USER/.cabal/
+CABAL_BIN_PATH="/Users/$USER/.cabal/bin"
 
-# java
-export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/
-export PATH="$GNU_COREUTILS_PATH:$GNU_SED_PATH:$GNU_TAR_PATH:/usr/local/sbin:$CABAL_BIN_PATH:$JAVA_HOME:$PATH"
+# JAVA
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home"
+
+# PATH
+export PATH="$CABAL_BIN_PATH:$GNU_COREUTILS_PATH:$GNU_SED_PATH:$GNU_TAR_PATH:/usr/local/sbin:$JAVA_HOME:$PATH"
 export MANPATH="$GNU_COREUTILS_MANPATH:$GNU_SED_MANPATH:$MANPATH"
-export VISUAL="emacsclient --alternate-editor=emacs"
-export EDITOR="$VISUAL"
+
+# EDITOR
+export VISUAL="emacsclient -c -a emacs"
+export EDITOR="emacsclient -t"
+export ALTERNATE_EDITOR=""
 
 # Setup dircolors to colorize 'ls' output
 if [ "$TERM" != "dumb" ]; then
@@ -49,9 +54,10 @@ if [ "$TERM" != "dumb" ]; then
 fi
 
 # aliases
-alias e="$EDITOR"
-alias ls='ls $LS_OPTIONS -hF'
-alias ll='ls $LS_OPTIONS -ahlLF'
+alias emax="emacsclient -t" # used to be "emacs -nw"
+alias emacsc="emacsclient -c -a emacs"
+alias ls='ls $LS_OPTIONS -F'
+alias ll='ls $LS_OPTIONS -ahlF'
 alias grep='grep --color=auto'
 # Use homebrewed version of gcc
 alias hgcc='gcc-4.9'
