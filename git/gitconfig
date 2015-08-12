@@ -5,7 +5,7 @@
 	status = auto
 [user]
 	name = Vivitsu Maharaja
-	email = vivitsu@lendinghome.com
+	email = vivitsu.maharaja@gmail.com
 [core]
 	editor = emacsclient -c -a emacs
 	excludesfile = ~/.gitexcludes
