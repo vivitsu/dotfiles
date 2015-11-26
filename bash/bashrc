@@ -38,6 +38,11 @@ CABAL_BIN_PATH="/Users/$USER/.cabal/bin"
 # JAVA
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home"
 
+# RUBY
+if which rbenv > /dev/null; then 
+	eval "$(rbenv init -)"; 
+fi
+
 # PATH
 export PATH="$CABAL_BIN_PATH:$GNU_COREUTILS_PATH:$GNU_SED_PATH:$GNU_TAR_PATH:/usr/local/sbin:$JAVA_HOME:$PATH"
 export MANPATH="$GNU_COREUTILS_MANPATH:$GNU_SED_MANPATH:$MANPATH"
@@ -66,6 +71,11 @@ alias redis-start='sudo launchctl start io.redis.redis-server'
 alias redis-stop='sudo launchctl stop io.redis.redis-server'
 # Homebrew unzip
 alias unzip6='/usr/local/Cellar/unzip/6.0/bin/unzip'
+
+# LendingHome aliases
+alias lhm='cd ~/src/lendinghome/lendinghome-monolith'
+alias lhmod='cd ~/src/lendinghome/modeling'
+alias lhdx='cd ~/src/lendinghome/dx'
 
 if [ -f ~/.lh_bash_aliases ]; then
     . ~/.lh_bash_aliases

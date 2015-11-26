@@ -1,10 +1,33 @@
 colorscheme smyck
-syntax enable
-filetype plugin indent on
-"set background=dark
+
+set nocompatible
 set number
 set ruler
-set backspace=indent,eol,start " backspace over everything in insert mode
+set nobackup
+set nowritebackup
+set noswapfile
+set incsearch
 set tabstop=4
 set shiftwidth=4
-set expandtab
+set backspace=indent,eol,start
+set laststatus=2
+set showcmd
+
+syntax enable
+
+" Setup vundle
+filetype off
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+" Plugins
+Plugin 'gmarik/vundle'
+Plugin 'scrooloose/nerdtree'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/syntastic'
+
+call vundle#end()
+
+" Post-vundle
+filetype plugin indent on
+
