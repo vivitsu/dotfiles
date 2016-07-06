@@ -1,5 +1,3 @@
-colorscheme smyck
-
 set nocompatible
 set number
 set ruler
@@ -12,6 +10,7 @@ set shiftwidth=4
 set backspace=indent,eol,start
 set laststatus=2
 set showcmd
+set background=dark
 
 syntax enable
 
@@ -25,9 +24,10 @@ Plugin 'gmarik/vundle'
 Plugin 'scrooloose/nerdtree'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/syntastic'
+Plugin 'altercation/vim-colors-solarized'
 
 call vundle#end()
 
 " Post-vundle
 filetype plugin indent on
-
+colorscheme solarized

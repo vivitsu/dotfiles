@@ -34,6 +34,11 @@ GNU_TAR_PATH="/usr/local/opt/gnu-tar/libexec/gnubin"
 
 # Add cabal bin to PATH
 CABAL_BIN_PATH="/Users/$USER/.cabal/bin"
+STACK_BIN_PATH="/Users/$USER/.local/bin"
+
+# LendingHome toolbelt
+LH_TOOLBELT_PATH="/Users/$USER/src/lendinghome/lendinghome-toolbelt"
+LH_TOOLBELT_BIN_PATH="/Users/$USER/src/lendinghome/lendinghome-toolbelt/bin"
 
 # JAVA
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home"
@@ -44,7 +49,7 @@ if which rbenv > /dev/null; then
 fi
 
 # PATH
-export PATH="$CABAL_BIN_PATH:$GNU_COREUTILS_PATH:$GNU_SED_PATH:$GNU_TAR_PATH:/usr/local/sbin:$JAVA_HOME:$PATH"
+export PATH="$LH_TOOLBELT_PATH:$LH_TOOLBELT_BIN_PATH:$STACK_BIN_PATH:$CABAL_BIN_PATH:$GNU_COREUTILS_PATH:$GNU_SED_PATH:$GNU_TAR_PATH:/usr/local/sbin:$JAVA_HOME:$PATH"
 export MANPATH="$GNU_COREUTILS_MANPATH:$GNU_SED_MANPATH:$MANPATH"
 
 # EDITOR
@@ -74,7 +79,7 @@ alias unzip6='/usr/local/Cellar/unzip/6.0/bin/unzip'
 
 # LendingHome aliases
 alias lhm='cd ~/src/lendinghome/lendinghome-monolith'
-alias lhmod='cd ~/src/lendinghome/modeling'
+alias lhetl='cd ~/src/lendinghome/etl'
 alias lhdx='cd ~/src/lendinghome/dx'
 
 if [ -f ~/.lh_bash_aliases ]; then
@@ -98,5 +103,5 @@ fi
 if [ "$LANG" == "en_US.UTF-8" ]; then
     PS1="${FGGR}\w${RESET}\$(__git_ps1) ${FGRD}λ${RESET} "
 else
-    PS1="[${FGGN}\u${RESET}:${FGGR}\w${RESET}\$(__git_ps1 ':%s')] \$ "
+	PS1="${FGGR}\w${RESET}\$(__git_ps1) ${FGRD}\$${RESET} "
 fi

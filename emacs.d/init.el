@@ -4,43 +4,11 @@
 (setq make-backup-files nil)
 
 ;; set a default font
-(when (member "Inconsolata" (font-family-list))
-  (set-face-attribute 'default nil :font "Inconsolata"))
+(when (member "Monaco" (font-family-list))
+  (set-face-attribute 'default nil :font "Monaco"))
 
 ;; set font height
-(set-face-attribute 'default nil :height 140)
-
-;; set theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/base16")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(if (display-graphic-p)
-    (load-theme 'smyx t)
-  (load-theme 'wombat t))
-
-;; set appearance
-(if (display-graphic-p)
-    (progn
-      (tool-bar-mode -1)
-      (scroll-bar-mode -1)))
-
-(setq inhibit-splash-screen t
-      inhibit-startup-echo-area-message t
-      initial-scratch-message nil)
-
-(setq tab-width 4
-      indent-tabs-mode nil
-      column-number-mode t
-      show-paren-mode t)
-
-(defalias 'yes-or-no-p 'y-or-n-p)
-
-;; Swap option and command keys on Mac OS X
-(cond
- ((string-equal system-type "darwin")    ; Mac OS X
-  (setq mac-option-modifier 'super)
-  (setq mac-command-modifier 'meta)
- )
-)
+(set-face-attribute 'default nil :height 120)
 
 (require 'package)
 (setq package-archives '(("org" . "http://orgmode.org/elpa/")
@@ -100,6 +68,39 @@
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
+;; set theme
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/base16")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(if (display-graphic-p)
+    (load-theme 'ample t)
+  (load-theme 'wombat t))
+
+;; set appearance
+(if (display-graphic-p)
+    (progn
+      (tool-bar-mode -1)
+      (scroll-bar-mode -1)))
+
+(setq inhibit-splash-screen t
+      inhibit-startup-echo-area-message t
+      initial-scratch-message nil)
+
+(setq tab-width 4
+      indent-tabs-mode nil
+      column-number-mode t)
+
+(show-paren-mode 1)
+
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+;; Swap option and command keys on Mac OS X
+(cond
+ ((string-equal system-type "darwin")    ; Mac OS X
+  (setq mac-option-modifier 'super)
+  (setq mac-command-modifier 'meta)
+ )
+)
+
 ;; Enable Ido-Mode
 (require 'ido)
 (ido-mode 1)
@@ -129,12 +130,12 @@
 (global-set-key (kbd "s-b") 'projectile-switch-to-buffer)
 
 ;; smartparens
-(require 'smartparens-config)
+;;(require 'smartparens-config)
 
-;; Add ghc-mod
-(autoload 'ghc-init "ghc" nil t)
-(autoload 'ghc-debug "ghc" nil t)
-(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+;; ;; Add ghc-mod
+;; (autoload 'ghc-init "ghc" nil t)
+;; (autoload 'ghc-debug "ghc" nil t)
+;; (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
 ;; Haskell indentation modes
 (require 'haskell-mode)
@@ -149,3 +150,14 @@
 (autoload 'python-mode "python-mode" "Python Mode." t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
+
+;; dash-at-point
+(global-set-key "\C-cd" 'dash-at-point)
+(global-set-key "\C-ce" 'dash-at-point-with-docset)
+
+;; neotree
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+(setq neo-smart-open t)
+;; work with projectile
+(setq projectile-switch-project-action 'neotree-projectile-action)
