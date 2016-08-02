@@ -11,9 +11,10 @@
 (set-face-attribute 'default nil :height 120)
 
 (require 'package)
-(setq package-archives '(("org" . "http://orgmode.org/elpa/")
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+			 ("org" . "http://orgmode.org/elpa/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
-			 ("melpa" . "http://melpa.milkbox.net/packages/")))
+			 ("melpa" . "http://melpa.org/packages/")))
 
 (package-initialize)
 
@@ -39,7 +40,6 @@
 		     inf-ruby
 		     inflections
 		     jump
-		     let-alist
 		     magit
 		     magit-popup
 		     markdown-mode
@@ -69,10 +69,8 @@
   (exec-path-from-shell-initialize))
 
 ;; set theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/base16")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (if (display-graphic-p)
-    (load-theme 'ample t)
+    (load-theme 'monokai t)
   (load-theme 'wombat t))
 
 ;; set appearance
