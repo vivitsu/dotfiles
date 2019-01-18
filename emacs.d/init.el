@@ -3,9 +3,8 @@
 
 (setq make-backup-files nil)
 
-;; set a default font
-(when (member "Monaco" (font-family-list))
-  (set-face-attribute 'default nil :font "Monaco"))
+(when (member "SF Mono" (font-family-list))
+  (set-face-attribute 'default nil :font "SF Mono"))
 
 ;; set font height
 (set-face-attribute 'default nil :height 120)
@@ -13,7 +12,6 @@
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 			 ("org" . "http://orgmode.org/elpa/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
 			 ("melpa" . "http://melpa.org/packages/")))
 
 (package-initialize)
@@ -21,73 +19,41 @@
 ;; Prevent packages from loading again after processing the init file - http://stackoverflow.com/a/18783152
 (setq package-enable-at-startup nil)
 
-(setq package-list '(ag
-		     async
-		     auto-complete
-		     dash
-		     enh-ruby-mode
-		     epl
-		     exec-path-from-shell
-		     findr
-		     flx
-		     flx-ido
-		     flycheck
-		     flycheck-haskell
-		     ghc
-		     git-commit
-		     grizzl
-		     haskell-mode
-		     inf-ruby
-		     inflections
-		     jump
-		     magit
-		     magit-popup
-		     markdown-mode
-		     pkg-info
-		     popup
-		     projectile
-		     python-mode
-		     rinari
-		     ruby-compilation
-		     seq
-		     smartparens
-		     sql-indent
-		     with-editor
-		     yasnippet))
-
-;; fetch the list of packages available 
-(unless package-archive-contents
-  (package-refresh-contents))
-
-;; install the missing packages
-(dolist (package package-list)
-  (unless (package-installed-p package)
-    (package-install package)))
-
 ;; Set $PATH to bash PATH on Mac OS X
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
-;; set theme
-(if (display-graphic-p)
-    (load-theme 'monokai t)
-  (load-theme 'wombat t))
-
 ;; set appearance
-(if (display-graphic-p)
-    (progn
-      (tool-bar-mode -1)
-      (scroll-bar-mode -1)))
+(when (display-graphic-p)
+  (progn
+    (tool-bar-mode -1)
+    (scroll-bar-mode -1)))
+;; using sellout's version of solarized at https://github.com/sellout/emacs-color-theme-solarized
+;; (load-theme 'solarized t))
+
+(load-theme 'zenburn t t)
+(enable-theme 'zenburn)
 
 (setq inhibit-splash-screen t
       inhibit-startup-echo-area-message t
       initial-scratch-message nil)
 
-(setq tab-width 4
-      indent-tabs-mode nil
-      column-number-mode t)
+;; Open Emacs maximized
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+(split-window-horizontally)
+(add-to-list 'default-frame-alist '(fullscreen . fullheight))
+
+(setq tab-width 4)
+(setq indent-tabs-mode nil)
+(setq column-number-mode t)
+
+;; Set indentation to 4 in CC mode
+(setq-default c-basic-offset 4)
 
 (show-paren-mode 1)
+
+;; Set shell
+(setq explicit-shell-file-name "/usr/local/bin/bash")
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
@@ -109,15 +75,6 @@
 (setq ido-use-filename-at-point 'guess)
 (setq ido-create-new-buffer 'always)
 
-;; auto-complete
-(require 'auto-complete)
-(add-to-list 'ac-dictionary-directories
-	     "~/.directories.d/elpa/auto-complete-20151112.2030/dict")
-
-(require 'auto-complete-config)
-(ac-config-default)
-(setq ac-ignore-case nil)
-
 ;; Projectile config
 (require 'projectile)
 (projectile-global-mode)
@@ -128,34 +85,4 @@
 (global-set-key (kbd "s-b") 'projectile-switch-to-buffer)
 
 ;; smartparens
-;;(require 'smartparens-config)
-
-;; ;; Add ghc-mod
-;; (autoload 'ghc-init "ghc" nil t)
-;; (autoload 'ghc-debug "ghc" nil t)
-;; (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
-
-;; Haskell indentation modes
-(require 'haskell-mode)
-;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
-
-;; Add python-mode
-(require 'python-mode)
-(add-to-list 'load-path "~/.emacs.d/plugins/python-mode.el-6.2.0")
-;(setq py-install-directory "~/.emacs.d/plugins/python-mode.el-6.2.0")
-(autoload 'python-mode "python-mode" "Python Mode." t)
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'interpreter-mode-alist '("python" . python-mode))
-
-;; dash-at-point
-(global-set-key "\C-cd" 'dash-at-point)
-(global-set-key "\C-ce" 'dash-at-point-with-docset)
-
-;; neotree
-(require 'neotree)
-(global-set-key [f8] 'neotree-toggle)
-(setq neo-smart-open t)
-;; work with projectile
-(setq projectile-switch-project-action 'neotree-projectile-action)
+(require 'smartparens-config)
